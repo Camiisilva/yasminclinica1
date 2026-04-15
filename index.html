@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yasmin Clínica - Cardiologia</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Sidebar Lateral (Conforme Dashboard Roxo) -->
+    <aside class="sidebar">
+        <div class="logo-container">
+            <i class="fa-solid fa-heart-pulse fa-2x"></i>
+            <span class="logo-text">Yasmin Silva</span>
+        </div>
+
+        <nav>
+            <ul class="nav-list">
+                <li class="nav-item active">
+                    <i class="fa-solid fa-user"></i>
+                    <span>Perfil</span>
+                </li>
+                <li class="nav-item">
+                    <i class="fa-solid fa-notes-medical"></i>
+                    <span>Serviços</span>
+                </li>
+                <li class="nav-item">
+                    <i class="fa-solid fa-calendar-days"></i>
+                    <span>Agenda</span>
+                </li>
+                <li class="nav-item">
+                    <i class="fa-solid fa-envelope"></i>
+                    <span>Mensagens</span>
+                </li>
+                <li class="nav-item">
+                    <i class="fa-solid fa-gear"></i>
+                    <span>Configurações</span>
+                </li>
+            </ul>
+        </nav>
+
+        <div style="margin-top: auto;">
+            <div class="nav-item" id="theme-toggle">
+                <i class="fa-solid fa-moon"></i>
+                <span>Modo Escuro</span>
+            </div>
+        </div>
+    </aside>
+
+    <div class="main-wrapper">
+        <!-- Header Minimalista (3ª imagem) -->
+        <header>
+            <ul class="nav-menu">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Sobre</a></li>
+                <li><a href="#">Serviços</a></li>
+                <li><a href="#">Contato</a></li>
+            </ul>
+        </header>
+
+        <!-- Conteúdo Principal Grid de 2 Colunas -->
+        <main class="content-grid">
+            <!-- Coluna Central: Hero e Cards Principais -->
+            <section class="central-content">
+                <div class="hero-section" style="padding: 2rem 0;">
+                    <h1 style="font-size: 2.5rem; margin-bottom: 1rem;">Cuide do seu coração com quem entende.</h1>
+                    <p style="color: var(--text-muted); max-width: 600px;">Experiência e tecnologia em cardiologia para garantir sua saúde e bem-estar em cada batimento.</p>
+                </div>
+
+                <!-- Placeholder para o Card de Perfil que vamos estilizar depois -->
+                <div style="background: var(--card-bg); height: 200px; border-radius: 20px; box-shadow: var(--shadow); margin-top: 2rem; display: flex; align-items: center; justify-content: center; color: var(--text-muted);">
+                    Card de Perfil da Dra. Yasmin (Em construção)
+                </div>
+            </section>
+
+            <!-- Coluna Direita: Informações Rápidas -->
+            <aside class="right-panel">
+                <div style="background: var(--primary-color); color: white; padding: 2rem; border-radius: 20px; margin-bottom: 2rem;">
+                    <h3>Atendimento Premium</h3>
+                    <ul style="margin-top: 1rem; list-style: none;">
+                        <li style="margin-bottom: 10px;"><i class="fa-solid fa-check"></i> Exames de última geração</li>
+                        <li style="margin-bottom: 10px;"><i class="fa-solid fa-check"></i> Atendimento personalizado</li>
+                        <li style="margin-bottom: 10px;"><i class="fa-solid fa-check"></i> Acompanhamento 24h</li>
+                    </ul>
+                </div>
+            </aside>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

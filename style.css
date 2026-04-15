@@ -1,0 +1,191 @@
+:root {
+    /* Cores do Dashboard */
+    --primary-color: #874cfc;
+    --primary-hover: #b79ee8;
+    --bg-light: #f5f6fa;
+    --sidebar-bg: #874cfc;
+    --card-bg: #ffffff;
+    --text-main: #2d3436;
+    --text-muted: #636e72;
+    --white: #ffffff;
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    --transition: all 0.3s ease;
+
+    /* Dark Mode Tokens */
+    --dark-bg: #121212;
+    --dark-card: #1e1e1e;
+    --dark-text: #f5f6fa;
+}
+
+[data-theme="dark"] {
+    --bg-light: var(--dark-bg);
+    --card-bg: var(--dark-card);
+    --text-main: var(--dark-text);
+    --text-muted: #b2bec3;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-light);
+    color: var(--text-main);
+    display: flex;
+    min-height: 100vh;
+    overflow-x: hidden;
+    transition: background-color 0.3s ease;
+}
+
+/* Sidebar Estilo Dashboard */
+.sidebar {
+    width: 260px;
+    background-color: var(--sidebar-bg);
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 1.5rem;
+    position: fixed;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    z-index: 100;
+    transition: transform 0.3s ease;
+}
+
+.logo-container {
+    margin-bottom: 3rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-text {
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.8rem;
+}
+
+.nav-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.nav-item {
+    padding: 12px 15px;
+    border-radius: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+/* Efeito de preenchimento (Fill Effect) */
+.nav-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background-color: var(--primary-hover);
+    transition: var(--transition);
+    z-index: 0;
+}
+
+.nav-item:hover::before {
+    left: 0;
+}
+
+.nav-item span, .nav-item i {
+    position: relative;
+    z-index: 1;
+}
+
+.nav-item i {
+    font-size: 1.2rem;
+}
+
+.nav-item.active {
+    background-color: var(--white);
+    color: var(--primary-color);
+}
+
+.nav-item.active::before {
+    display: none;
+}
+
+/* Main Layout */
+.main-wrapper {
+    flex: 1;
+    margin-left: 260px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header Minimalista (3ª imagem) */
+header {
+    height: 70px;
+    background-color: var(--card-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 2rem;
+    position: sticky;
+    top: 20px;
+    margin: 20px 20px 0 20px;
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    z-index: 10;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.nav-menu a:hover {
+    color: var(--primary-color);
+}
+
+/* Grid de Layout */
+.content-grid {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .sidebar {
+        transform: translateX(-100%);
+    }
+
+    .main-wrapper {
+        margin-left: 0;
+    }
+
+    .sidebar.open {
+        transform: translateX(0);
+    }
+}
