@@ -3,95 +3,206 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yasmin Clínica - Cardiologia</title>
+    <title>Yasmin Clínica — Cardiologia Premium</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Playfair+Display:ital,wght@0,600;1,600&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="site-container">
+        <!-- Sidebar Lateral Fixa -->
+        <div class="sidebar-overlay" id="sidebar-overlay"></div>
+        <aside class="sidebar" id="sidebar">
+            <div class="logo-container">
+                <span class="logo-icon">🫀</span>
+                <span class="logo-text">Yasmin Clínica</span>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul class="nav-list">
+                    <li class="nav-item active" data-section="inicio">
+                        <a href="#inicio">
+                            <i class="fa-solid fa-house"></i>
+                            <span>Início</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" data-section="perfil">
+                        <a href="#perfil">
+                            <i class="fa-solid fa-user-doctor"></i>
+                            <span>A Doutora</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" data-section="servicos">
+                        <a href="#servicos">
+                            <i class="fa-solid fa-notes-medical"></i>
+                            <span>Serviços</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" data-section="agenda">
+                        <a href="#agenda">
+                            <i class="fa-solid fa-calendar-check"></i>
+                            <span>Agenda</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" data-section="contato">
+                        <a href="#contato">
+                            <i class="fa-solid fa-envelope"></i>
+                            <span>Contato</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
 
-    <!-- Sidebar Lateral (Conforme Dashboard Roxo) -->
-    <aside class="sidebar">
-        <div class="logo-container">
-            <i class="fa-solid fa-heart-pulse fa-2x"></i>
-            <span class="logo-text">Yasmin Silva</span>
+            <div class="sidebar-footer">
+                <div class="social-links">
+                    <button onclick="openLink('wa')" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></button>
+                    <button onclick="openLink('ig')" title="Instagram"><i class="fa-brands fa-instagram"></i></button>
+                    <button onclick="openLink('em')" title="E-mail"><i class="fa-solid fa-envelope"></i></button>
+                </div>
+                <div class="theme-switch" id="theme-toggle">
+                    <i class="fa-solid fa-moon"></i>
+                    <span>Modo Escuro</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Wrapper -->
+        <div class="main-wrapper">
+            <!-- Header Superior -->
+            <header id="main-header">
+                <div class="header-left">
+                    <button class="hamburger-menu" id="menu-toggle">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                </div>
+                <nav class="header-nav">
+                    <a href="#inicio">Início</a>
+                    <a href="#perfil">A Doutora</a>
+                    <a href="#servicos">Serviços</a>
+                    <a href="#contato">Contato</a>
+                </nav>
+                <div class="header-right">
+                    <button class="btn-cta btn-trigger-modal">Agendar Consulta</button>
+                </div>
+            </header>
+
+            <main>
+                <!-- Hero Section -->
+                <section class="hero" id="inicio">
+                    <div class="hero-content">
+                        <div class="hero-text scroll-reveal">
+                            <span class="hero-label">Excelência em Saúde</span>
+                            <h1>Cardiologia Digital de Alta Precisão</h1>
+                            <p>Diagnósticos avançados com tecnologia moderna e um olhar humanizado. Cuidamos do seu coração com precisão e sofisticação.</p>
+                            <div class="hero-actions">
+                                <a href="#servicos" class="btn-primary">Ver Serviços</a>
+                                <a href="#agenda" class="btn-secondary btn-trigger-modal">Agendar Consulta</a>
+                            </div>
+                        </div>
+                        <div class="hero-visual scroll-reveal">
+                            <div class="premium-badge-card">
+                                <h3>Atendimento Premium</h3>
+                                <ul>
+                                    <li><i class="fa-solid fa-circle-check"></i> Exames modernos</li>
+                                    <li><i class="fa-solid fa-circle-check"></i> Atendimento personalizado</li>
+                                    <li><i class="fa-solid fa-circle-check"></i> Acompanhamento contínuo</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="content-wrapper">
+                    <!-- Sessão A Doutora -->
+                    <section id="perfil" class="section scroll-reveal">
+                        <h2 class="section-title">A Doutora</h2>
+                        <div class="doctor-card">
+                            <div class="doctor-info">
+                                <div class="doctor-image-placeholder">🫀</div>
+                                <div class="doctor-text">
+                                    <h3>Dra. Yasmin Silva</h3>
+                                    <p class="doctor-specialty">Cardiologia Clínica e Preventiva</p>
+                                    <p class="doctor-bio">Dedicada à cardiologia com foco em inovação e longevidade. Membro da Sociedade Brasileira de Cardiologia, com atuação nos principais centros médicos de São Paulo.</p>
+                                    <div class="doctor-badges">
+                                        <span>CRM 123456-SP</span>
+                                        <span>Medicina Preventiva</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Serviços -->
+                    <section id="servicos" class="section scroll-reveal">
+                        <h2 class="section-title">Nossos Serviços</h2>
+                        <div class="services-grid">
+                            <div class="service-card">
+                                <span class="service-icon"><i class="fa-solid fa-stethoscope"></i></span>
+                                <h4>Check-up Completo</h4>
+                                <p>Avaliação detalhada para prevenção e diagnóstico precoce.</p>
+                            </div>
+                            <div class="service-card">
+                                <span class="service-icon"><i class="fa-solid fa-heart-pulse"></i></span>
+                                <h4>ECG Digital</h4>
+                                <p>Eletrocardiograma rápido com laudos processados em tempo real.</p>
+                            </div>
+                            <div class="service-card">
+                                <span class="service-icon"><i class="fa-solid fa-clock-rotate-left"></i></span>
+                                <h4>Holter 24h</h4>
+                                <p>Monitoramento contínuo da atividade elétrica cardíaca.</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Agenda e Contato -->
+                    <section id="agenda" class="section scroll-reveal">
+                        <div class="contact-grid">
+                            <div class="contact-card">
+                                <h3>Localização</h3>
+                                <p><i class="fa-solid fa-location-dot"></i> Av. Paulista, 1000 - São Paulo, SP</p>
+                                <p><i class="fa-solid fa-phone"></i> (11) 99999-9999</p>
+                                <p><i class="fa-solid fa-envelope"></i> contato@yasminclinica.com.br</p>
+                            </div>
+                            <div class="contact-card highlight">
+                                <h3>Horário de Atendimento</h3>
+                                <p>Segunda a Sexta: 08h às 18h</p>
+                                <p>Sábados: 08h às 12h</p>
+                                <button class="btn-cta full-width btn-trigger-modal">Solicitar Agendamento</button>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </main>
         </div>
+    </div>
 
-        <nav>
-            <ul class="nav-list">
-                <li class="nav-item active">
-                    <i class="fa-solid fa-user"></i>
-                    <span>Perfil</span>
-                </li>
-                <li class="nav-item">
-                    <i class="fa-solid fa-notes-medical"></i>
-                    <span>Serviços</span>
-                </li>
-                <li class="nav-item">
-                    <i class="fa-solid fa-calendar-days"></i>
-                    <span>Agenda</span>
-                </li>
-                <li class="nav-item">
-                    <i class="fa-solid fa-envelope"></i>
-                    <span>Mensagens</span>
-                </li>
-                <li class="nav-item">
-                    <i class="fa-solid fa-gear"></i>
-                    <span>Configurações</span>
-                </li>
-            </ul>
-        </nav>
-
-        <div style="margin-top: auto;">
-            <div class="nav-item" id="theme-toggle">
-                <i class="fa-solid fa-moon"></i>
-                <span>Modo Escuro</span>
+    <!-- Modal de Agendamento -->
+    <div class="modal" id="booking-modal">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <h2>Solicitar Agendamento</h2>
+            <p>Preencha os dados e retornaremos em breve.</p>
+            <form id="booking-form">
+                <input type="text" placeholder="Nome completo" required>
+                <div class="input-row">
+                    <input type="date" required>
+                    <select required>
+                        <option value="">Período</option>
+                        <option>Manhã</option>
+                        <option>Tarde</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-primary full-width">Enviar Solicitação</button>
+            </form>
+            <div id="success-message" class="hidden">
+                <i class="fa-solid fa-circle-check"></i>
+                <p>Recebemos sua solicitação!</p>
             </div>
         </div>
-    </aside>
-
-    <div class="main-wrapper">
-        <!-- Header Minimalista (3ª imagem) -->
-        <header>
-            <ul class="nav-menu">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Sobre</a></li>
-                <li><a href="#">Serviços</a></li>
-                <li><a href="#">Contato</a></li>
-            </ul>
-        </header>
-
-        <!-- Conteúdo Principal Grid de 2 Colunas -->
-        <main class="content-grid">
-            <!-- Coluna Central: Hero e Cards Principais -->
-            <section class="central-content">
-                <div class="hero-section" style="padding: 2rem 0;">
-                    <h1 style="font-size: 2.5rem; margin-bottom: 1rem;">Cuide do seu coração com quem entende.</h1>
-                    <p style="color: var(--text-muted); max-width: 600px;">Experiência e tecnologia em cardiologia para garantir sua saúde e bem-estar em cada batimento.</p>
-                </div>
-
-                <!-- Placeholder para o Card de Perfil que vamos estilizar depois -->
-                <div style="background: var(--card-bg); height: 200px; border-radius: 20px; box-shadow: var(--shadow); margin-top: 2rem; display: flex; align-items: center; justify-content: center; color: var(--text-muted);">
-                    Card de Perfil da Dra. Yasmin (Em construção)
-                </div>
-            </section>
-
-            <!-- Coluna Direita: Informações Rápidas -->
-            <aside class="right-panel">
-                <div style="background: var(--primary-color); color: white; padding: 2rem; border-radius: 20px; margin-bottom: 2rem;">
-                    <h3>Atendimento Premium</h3>
-                    <ul style="margin-top: 1rem; list-style: none;">
-                        <li style="margin-bottom: 10px;"><i class="fa-solid fa-check"></i> Exames de última geração</li>
-                        <li style="margin-bottom: 10px;"><i class="fa-solid fa-check"></i> Atendimento personalizado</li>
-                        <li style="margin-bottom: 10px;"><i class="fa-solid fa-check"></i> Acompanhamento 24h</li>
-                    </ul>
-                </div>
-            </aside>
-        </main>
     </div>
 
     <script src="script.js"></script>
