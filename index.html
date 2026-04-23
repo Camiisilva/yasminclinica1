@@ -3,52 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yasmin Clínica — Cardiologia Premium</title>
+    <title>Yasmin Clínica — Site Premium de Cardiologia</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Playfair+Display:ital,wght@0,600;1,600&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@600;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="site-container">
-        <!-- Sidebar Lateral Fixa -->
-        <div class="sidebar-overlay" id="sidebar-overlay"></div>
+        <!-- Overlay para Mobile -->
+        <div class="overlay" id="sidebar-overlay"></div>
+
+        <!-- Sidebar Premium -->
         <aside class="sidebar" id="sidebar">
-            <div class="logo-container">
-                <span class="logo-icon">🫀</span>
+            <div class="logo-container fade-up">
+                <i class="fa-solid fa-heart-pulse logo-icon"></i>
                 <span class="logo-text">Yasmin Clínica</span>
             </div>
             
-            <nav class="sidebar-nav">
+            <nav style="flex: 1;">
                 <ul class="nav-list">
-                    <li class="nav-item active" data-section="inicio">
+                    <li class="nav-item active">
                         <a href="#inicio">
                             <i class="fa-solid fa-house"></i>
                             <span>Início</span>
                         </a>
                     </li>
-                    <li class="nav-item" data-section="perfil">
+                    <li class="nav-item">
                         <a href="#perfil">
                             <i class="fa-solid fa-user-doctor"></i>
                             <span>A Doutora</span>
                         </a>
                     </li>
-                    <li class="nav-item" data-section="servicos">
+                    <li class="nav-item">
                         <a href="#servicos">
                             <i class="fa-solid fa-notes-medical"></i>
                             <span>Serviços</span>
                         </a>
                     </li>
-                    <li class="nav-item" data-section="agenda">
+                    <li class="nav-item">
                         <a href="#agenda">
                             <i class="fa-solid fa-calendar-check"></i>
                             <span>Agenda</span>
                         </a>
                     </li>
-                    <li class="nav-item" data-section="contato">
+                    <li class="nav-item">
                         <a href="#contato">
                             <i class="fa-solid fa-envelope"></i>
                             <span>Contato</span>
@@ -57,11 +59,11 @@
                 </ul>
             </nav>
 
-            <div class="sidebar-footer">
-                <div class="social-links">
-                    <button onclick="openLink('wa')" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></button>
-                    <button onclick="openLink('ig')" title="Instagram"><i class="fa-brands fa-instagram"></i></button>
-                    <button onclick="openLink('em')" title="E-mail"><i class="fa-solid fa-envelope"></i></button>
+            <div class="sidebar-footer fade-up">
+                <div class="social-links-grid">
+                    <button class="social-btn" onclick="socialLink('ig')"><i class="fa-brands fa-instagram"></i></button>
+                    <button class="social-btn" onclick="socialLink('wa')"><i class="fa-brands fa-whatsapp"></i></button>
+                    <button class="social-btn" onclick="socialLink('em')"><i class="fa-solid fa-envelope"></i></button>
                 </div>
                 <div class="theme-switch" id="theme-toggle">
                     <i class="fa-solid fa-moon"></i>
@@ -75,103 +77,94 @@
             <!-- Header Superior -->
             <header id="main-header">
                 <div class="header-left">
-                    <button class="hamburger-menu" id="menu-toggle">
+                    <button class="hamburger" id="menu-toggle">
                         <i class="fa-solid fa-bars"></i>
                     </button>
                 </div>
-                <nav class="header-nav">
+                
+                <nav class="nav-menu">
                     <a href="#inicio">Início</a>
                     <a href="#perfil">A Doutora</a>
                     <a href="#servicos">Serviços</a>
                     <a href="#contato">Contato</a>
                 </nav>
+
                 <div class="header-right">
-                    <button class="btn-cta btn-trigger-modal">Agendar Consulta</button>
+                    <button class="btn-agendar btn-trigger-modal">Agendar Consulta</button>
                 </div>
             </header>
 
             <main>
                 <!-- Hero Section -->
                 <section class="hero" id="inicio">
-                    <div class="hero-content">
-                        <div class="hero-text scroll-reveal">
-                            <span class="hero-label">Excelência em Saúde</span>
-                            <h1>Cardiologia Digital de Alta Precisão</h1>
-                            <p>Diagnósticos avançados com tecnologia moderna e um olhar humanizado. Cuidamos do seu coração com precisão e sofisticação.</p>
-                            <div class="hero-actions">
-                                <a href="#servicos" class="btn-primary">Ver Serviços</a>
-                                <a href="#agenda" class="btn-secondary btn-trigger-modal">Agendar Consulta</a>
-                            </div>
+                    <div class="hero-text fade-up">
+                        <h1>Cardiologia Digital de Alta Precisão</h1>
+                        <p>Diagnósticos avançados com tecnologia moderna e cuidado humano. Inovação constante para a saúde do seu coração.</p>
+                        <div style="display: flex; gap: 1.5rem;">
+                            <button class="btn-agendar btn-trigger-modal">Solicitar Agendamento</button>
+                            <a href="#servicos" class="btn-agendar" style="background: transparent; border: 2px solid var(--primary-color); color: var(--primary-color); animation: none; text-decoration: none;">Ver Serviços</a>
                         </div>
-                        <div class="hero-visual scroll-reveal">
-                            <div class="premium-badge-card">
-                                <h3>Atendimento Premium</h3>
-                                <ul>
-                                    <li><i class="fa-solid fa-circle-check"></i> Exames modernos</li>
-                                    <li><i class="fa-solid fa-circle-check"></i> Atendimento personalizado</li>
-                                    <li><i class="fa-solid fa-circle-check"></i> Acompanhamento contínuo</li>
-                                </ul>
-                            </div>
+                    </div>
+                    <div class="hero-visual fade-up" style="animation-delay: 0.2s;">
+                        <div style="width: 320px; height: 320px; background: var(--primary-color); border-radius: 40px; display: flex; align-items: center; justify-content: center; color: white; transform: rotate(5deg); box-shadow: 0 30px 60px rgba(124, 92, 252, 0.25);">
+                            <i class="fa-solid fa-heart-pulse fa-6x"></i>
                         </div>
                     </div>
                 </section>
 
                 <div class="content-wrapper">
-                    <!-- Sessão A Doutora -->
-                    <section id="perfil" class="section scroll-reveal">
+                    <!-- Sessão Bio -->
+                    <section id="perfil" class="fade-up" style="margin-bottom: 10rem;">
                         <h2 class="section-title">A Doutora</h2>
-                        <div class="doctor-card">
-                            <div class="doctor-info">
-                                <div class="doctor-image-placeholder">🫀</div>
-                                <div class="doctor-text">
-                                    <h3>Dra. Yasmin Silva</h3>
-                                    <p class="doctor-specialty">Cardiologia Clínica e Preventiva</p>
-                                    <p class="doctor-bio">Dedicada à cardiologia com foco em inovação e longevidade. Membro da Sociedade Brasileira de Cardiologia, com atuação nos principais centros médicos de São Paulo.</p>
-                                    <div class="doctor-badges">
-                                        <span>CRM 123456-SP</span>
-                                        <span>Medicina Preventiva</span>
-                                    </div>
-                                </div>
+                        <div class="profile-card" style="display: flex; gap: 3rem; align-items: center; flex-wrap: wrap;">
+                            <div style="width: 140px; height: 140px; background: rgba(124, 92, 252, 0.1); border-radius: 30px; display: flex; align-items: center; justify-content: center; color: var(--primary-color);">
+                                <i class="fa-solid fa-user-doctor fa-5x"></i>
+                            </div>
+                            <div style="flex: 1; min-width: 300px;">
+                                <h3 style="font-size: 2.2rem; color: var(--primary-color); margin-bottom: 0.5rem;">Dra. Yasmin Silva</h3>
+                                <p style="font-weight: 600; color: var(--text-muted); margin-bottom: 1.5rem;">Cardiologia Intervencionista e Prevenção</p>
+                                <p>Com anos de experiência clínica, a Dra. Yasmin integra inteligência tecnológica e empatia humana para oferecer o mais alto padrão em saúde cardiovascular de São Paulo.</p>
                             </div>
                         </div>
                     </section>
 
                     <!-- Serviços -->
-                    <section id="servicos" class="section scroll-reveal">
-                        <h2 class="section-title">Nossos Serviços</h2>
+                    <section id="servicos" class="fade-up" style="margin-bottom: 10rem;">
+                        <h2 class="section-title">Serviços Premium</h2>
                         <div class="services-grid">
                             <div class="service-card">
-                                <span class="service-icon"><i class="fa-solid fa-stethoscope"></i></span>
-                                <h4>Check-up Completo</h4>
-                                <p>Avaliação detalhada para prevenção e diagnóstico precoce.</p>
+                                <i class="fa-solid fa-stethoscope s-icon"></i>
+                                <h3>Mapeamento de Risco</h3>
+                                <p>Análise completa do perfil cardiovascular com as ferramentas diagnósticas mais modernas.</p>
                             </div>
                             <div class="service-card">
-                                <span class="service-icon"><i class="fa-solid fa-heart-pulse"></i></span>
-                                <h4>ECG Digital</h4>
-                                <p>Eletrocardiograma rápido com laudos processados em tempo real.</p>
+                                <i class="fa-solid fa-heart-pulse s-icon"></i>
+                                <h3>Eletro Digital 4K</h3>
+                                <p>Exames ultra precisos com processamento digital e laudo em tempo real.</p>
                             </div>
                             <div class="service-card">
-                                <span class="service-icon"><i class="fa-solid fa-clock-rotate-left"></i></span>
-                                <h4>Holter 24h</h4>
-                                <p>Monitoramento contínuo da atividade elétrica cardíaca.</p>
+                                <i class="fa-solid fa-watch-medical s-icon"></i>
+                                <h3>Monitoramento 24h</h3>
+                                <p>Holter e acompanhamento contínuo para detecção proativa de arritmias.</p>
                             </div>
                         </div>
                     </section>
 
-                    <!-- Agenda e Contato -->
-                    <section id="agenda" class="section scroll-reveal">
-                        <div class="contact-grid">
-                            <div class="contact-card">
-                                <h3>Localização</h3>
-                                <p><i class="fa-solid fa-location-dot"></i> Av. Paulista, 1000 - São Paulo, SP</p>
-                                <p><i class="fa-solid fa-phone"></i> (11) 99999-9999</p>
-                                <p><i class="fa-solid fa-envelope"></i> contato@yasminclinica.com.br</p>
+                    <!-- Contato -->
+                    <section id="contato" class="fade-up" style="margin-bottom: 4rem;">
+                        <h2 class="section-title">Nossa Localização</h2>
+                        <div class="clinical-card" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 4rem;">
+                            <div>
+                                <h3 style="margin-bottom: 2rem;">Unidade São Paulo</h3>
+                                <p><i class="fa-solid fa-location-dot" style="color: var(--primary-color); width: 20px;"></i> Av. Paulista, 1000 — Jardins</p>
+                                <p style="margin-top: 1rem;"><i class="fa-solid fa-phone" style="color: var(--primary-color); width: 20px;"></i> (11) 90000-0000</p>
+                                <p style="margin-top: 1rem;"><i class="fa-solid fa-envelope" style="color: var(--primary-color); width: 20px;"></i> contato@yasminclinica.com.br</p>
                             </div>
-                            <div class="contact-card highlight">
-                                <h3>Horário de Atendimento</h3>
-                                <p>Segunda a Sexta: 08h às 18h</p>
-                                <p>Sábados: 08h às 12h</p>
-                                <button class="btn-cta full-width btn-trigger-modal">Solicitar Agendamento</button>
+                            <div style="background: rgba(124, 92, 252, 0.05); padding: 2.5rem; border-radius: 20px;">
+                                <h3 style="margin-bottom: 1.5rem;">Atendimento</h3>
+                                <p>Segunda à Sexta — 08h às 19h</p>
+                                <p>Sábados — 08h às 13h</p>
+                                <button class="btn-agendar btn-trigger-modal" style="width: 100%; margin-top: 2rem;">Falar com Equipe</button>
                             </div>
                         </div>
                     </section>
@@ -180,27 +173,28 @@
         </div>
     </div>
 
-    <!-- Modal de Agendamento -->
-    <div class="modal" id="booking-modal">
+    <!-- Modal Premium -->
+    <div class="modal" id="modal">
         <div class="modal-content">
-            <button class="close-modal">&times;</button>
-            <h2>Solicitar Agendamento</h2>
-            <p>Preencha os dados e retornaremos em breve.</p>
+            <button id="close-modal" style="position: absolute; top: 30px; right: 30px; border: none; background: none; font-size: 1.8rem; cursor: pointer; color: var(--text-muted);">&times;</button>
+            <h2 style="color: var(--primary-color); margin-bottom: 1.5rem;">Solicitar Atendimento</h2>
+            <p style="margin-bottom: 2.5rem;">Escolha o melhor horário para cuidarmos do seu coração.</p>
             <form id="booking-form">
-                <input type="text" placeholder="Nome completo" required>
-                <div class="input-row">
-                    <input type="date" required>
-                    <select required>
-                        <option value="">Período</option>
+                <input type="text" placeholder="Nome completo" required style="width: 100%; padding: 16px; border-radius: 12px; border: 1px solid rgba(0,0,0,0.1); margin-bottom: 1.5rem; background: var(--bg-light); color: var(--text-main);">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 2rem;">
+                    <input type="date" required style="width: 100%; padding: 16px; border-radius: 12px; border: 1px solid rgba(0,0,0,0.1); background: var(--bg-light); color: var(--text-main);">
+                    <select required style="width: 100%; padding: 16px; border-radius: 12px; border: 1px solid rgba(0,0,0,0.1); background: var(--bg-light); color: var(--text-main);">
+                        <option value="">Selecione o Turno</option>
                         <option>Manhã</option>
                         <option>Tarde</option>
                     </select>
                 </div>
-                <button type="submit" class="btn-primary full-width">Enviar Solicitação</button>
+                <button type="submit" class="btn-agendar" style="width: 100%;">Confirmar Solicitação</button>
             </form>
-            <div id="success-message" class="hidden">
-                <i class="fa-solid fa-circle-check"></i>
-                <p>Recebemos sua solicitação!</p>
+            <div id="success" style="display: none; text-align: center; padding: 2rem;">
+                <i class="fa-solid fa-circle-check fa-5x" style="color: #27ae60; margin-bottom: 1.5rem; display: block;"></i>
+                <h3 style="font-size: 1.8rem;">Enviado com Sucesso!</h3>
+                <p>Retornaremos em instantes.</p>
             </div>
         </div>
     </div>

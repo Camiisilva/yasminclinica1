@@ -1,51 +1,62 @@
-// Seleção de Elementos
+// Elementos Globais
 const body = document.body;
+const themeToggle = document.getElementById('theme-toggle');
+const menuToggle = document.getElementById('menu-toggle');
 const sidebar = document.getElementById('sidebar');
 const overlay = document.getElementById('sidebar-overlay');
-const menuToggle = document.getElementById('menu-toggle');
-const themeToggle = document.getElementById('theme-toggle');
 const header = document.getElementById('main-header');
+const navItems = document.querySelectorAll('.nav-item');
 const sections = document.querySelectorAll('section[id]');
-const navItemsSidebar = document.querySelectorAll('.sidebar .nav-item');
-const scrollReveals = document.querySelectorAll('.scroll-reveal');
 
 // Modal
-const bookingModal = document.getElementById('booking-modal');
+const modal = document.getElementById('modal');
 const modalTriggers = document.querySelectorAll('.btn-trigger-modal');
-const closeModalBtn = document.querySelector('.close-modal');
+const closeModal = document.getElementById('close-modal');
 const bookingForm = document.getElementById('booking-form');
-const successMsg = document.getElementById('success-message');
+const successMsg = document.getElementById('success');
 
-// --- 1. Inicialização ---
+// 1. Inicialização (Tema e Animações)
 window.addEventListener('DOMContentLoaded', () => {
-    // Restaurar Tema
+    // Restaurar Tema Salvo
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark') {
         body.setAttribute('data-theme', 'dark');
-        themeToggle.querySelector('span').textContent = 'Modo Claro';
-        themeToggle.querySelector('i').classList.replace('fa-moon', 'fa-sun');
+        updateThemeUI(true);
     }
     
-    initScrollReveal();
+    // Iniciar Scroll Observer
+    initScrollAnimations();
 });
 
-// --- 2. Controle de Tema ---
-themeToggle.addEventListener('click', () => {
-    const isDark = body.getAttribute('data-theme') === 'dark';
+// 2. Controle de Tema (Dark/Light)
+if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+        const isDark = body.getAttribute('data-theme') === 'dark';
+        if (isDark) {
+            body.removeAttribute('data-theme');
+            updateThemeUI(false);
+            localStorage.setItem('theme', 'light');
+        } else {
+            body.setAttribute('data-theme', 'dark');
+            updateThemeUI(true);
+            localStorage.setItem('theme', 'dark');
+        }
+    });
+}
+
+function updateThemeUI(isDark) {
+    const icon = themeToggle.querySelector('i');
+    const span = themeToggle.querySelector('span');
     if (isDark) {
-        body.removeAttribute('data-theme');
-        themeToggle.querySelector('span').textContent = 'Modo Escuro';
-        themeToggle.querySelector('i').classList.replace('fa-sun', 'fa-moon');
-        localStorage.setItem('theme', 'light');
+        icon.classList.replace('fa-moon', 'fa-sun');
+        span.textContent = 'Modo Claro';
     } else {
-        body.setAttribute('data-theme', 'dark');
-        themeToggle.querySelector('span').textContent = 'Modo Claro';
-        themeToggle.querySelector('i').classList.replace('fa-moon', 'fa-sun');
-        localStorage.setItem('theme', 'dark');
+        icon.classList.replace('fa-sun', 'fa-moon');
+        span.textContent = 'Modo Escuro';
     }
-});
+}
 
-// --- 3. Header dinâmico no Scroll ---
+// 3. Efeito Dinâmico do Header
 window.addEventListener('scroll', () => {
     if (window.scrollY > 50) {
         header.classList.add('scrolled');
@@ -53,111 +64,105 @@ window.addEventListener('scroll', () => {
         header.classList.remove('scrolled');
     }
     
+    // Atualizar ScrollSpy
     updateScrollSpy();
 });
 
-// --- 4. Menu Mobile ---
-function toggleMobileMenu() {
-    sidebar.classList.toggle('open');
-    overlay.classList.toggle('active');
-}
-
+// 4. Menu Mobile (Hamburguer)
 if (menuToggle) {
-    menuToggle.addEventListener('click', toggleMobileMenu);
+    menuToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        sidebar.classList.toggle('open');
+        overlay.classList.toggle('active');
+    });
 }
 
 if (overlay) {
-    overlay.addEventListener('click', toggleMobileMenu);
+    overlay.addEventListener('click', () => {
+        sidebar.classList.remove('open');
+        overlay.classList.remove('active');
+    });
 }
 
-// Fechar menu mobile ao clicar em item
-navItemsSidebar.forEach(item => {
+// Auto-fechar ao clicar em item do menu
+navItems.forEach(item => {
     item.addEventListener('click', () => {
         if (window.innerWidth <= 1024) {
-            toggleMobileMenu();
+            sidebar.classList.remove('open');
+            overlay.classList.remove('active');
         }
     });
 });
 
-// --- 5. Scroll Reveal ---
-function initScrollReveal() {
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.15 });
-
-    scrollReveals.forEach(el => observer.observe(el));
-}
-
-// --- 6. ScrollSpy ---
-function updateScrollSpy() {
-    let currentSection = '';
+// 5. Redes Sociais Funcionais
+window.socialLink = function(platform) {
+    const actions = {
+        ig: () => window.open('https://instagram.com/yasminclinica', '_blank'),
+        wa: () => window.open('https://wa.me/5500000000000', '_blank'),
+        em: () => window.location.href = 'mailto:contato@yasminclinica.com.br'
+    };
     
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        if (window.pageYOffset >= (sectionTop - 150)) {
-            currentSection = section.getAttribute('id');
-        }
-    });
+    if (actions[platform]) actions[platform]();
+};
 
-    navItemsSidebar.forEach(item => {
-        item.classList.remove('active');
-        if (item.getAttribute('data-section') === currentSection) {
-            item.classList.add('active');
-        }
-    });
-}
-
-// --- 7. Modal de Agendamento ---
+// 6. Modal de Agendamento Premium
 modalTriggers.forEach(btn => {
     btn.addEventListener('click', () => {
-        bookingModal.classList.add('active');
-        bookingForm.classList.remove('hidden');
-        successMsg.classList.add('hidden');
+        modal.classList.add('active');
+        bookingForm.style.display = 'block';
+        successMsg.style.display = 'none';
     });
 });
 
-if (closeModalBtn) {
-    closeModalBtn.addEventListener('click', () => {
-        bookingModal.classList.remove('active');
-    });
+if (closeModal) {
+    closeModal.addEventListener('click', () => modal.classList.remove('active'));
 }
 
 window.addEventListener('click', (e) => {
-    if (e.target === bookingModal) {
-        bookingModal.classList.remove('active');
-    }
+    if (e.target === modal) modal.classList.remove('active');
 });
 
 if (bookingForm) {
     bookingForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        bookingForm.classList.add('hidden');
-        successMsg.classList.remove('hidden');
+        bookingForm.style.display = 'none';
+        successMsg.style.display = 'block';
         
+        // Timer para fechar modal
         setTimeout(() => {
-            bookingModal.classList.remove('active');
-        }, 2500);
+            modal.classList.remove('active');
+        }, 3500);
     });
 }
 
-// --- 8. Redes Sociais ---
-window.openLink = function(type) {
-    const links = {
-        wa: 'https://wa.me/5500000000000',
-        ig: 'https://instagram.com/yasminclinica',
-        em: 'mailto:contato@yasminclinica.com.br'
-    };
-    
-    if (type === 'em') {
-        window.location.href = links[type];
-    } else {
-        window.open(links[type], '_blank');
-    }
+// 7. ScrollSpy (Highlight do Menu Lateral)
+function updateScrollSpy() {
+    let scrollPos = window.scrollY + 150;
+    sections.forEach(section => {
+        if (scrollPos >= section.offsetTop && scrollPos < (section.offsetTop + section.offsetHeight)) {
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.querySelector('a').getAttribute('href') === `#${section.id}`) {
+                    item.classList.add('active');
+                }
+            });
+        }
+    });
 }
 
-console.log('Yasmin Clínica — Experiência Premium Ativada');
+// 8. Intersection Observer para Ativar Animações
+function initScrollAnimations() {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.fade-up').forEach(el => {
+        observer.observe(el);
+    });
+}
+
+console.log('Yasmin Clínica — Experiência Premium Finalizada com Sucesso');
