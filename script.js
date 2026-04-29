@@ -46,13 +46,10 @@ if (themeToggle) {
 
 function updateThemeUI(isDark) {
     const icon = themeToggle.querySelector('i');
-    const span = themeToggle.querySelector('span');
     if (isDark) {
         icon.classList.replace('fa-moon', 'fa-sun');
-        span.textContent = 'Modo Claro';
     } else {
         icon.classList.replace('fa-sun', 'fa-moon');
-        span.textContent = 'Modo Escuro';
     }
 }
 
@@ -99,7 +96,12 @@ window.socialLink = function(platform) {
     const actions = {
         ig: () => window.open('https://instagram.com/yasminclinica', '_blank'),
         wa: () => window.open('https://wa.me/5500000000000', '_blank'),
-        em: () => window.location.href = 'mailto:contato@yasminclinica.com.br'
+        em: () => {
+            const contactSection = document.getElementById('contato');
+            if (contactSection) {
+                contactSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
     };
     
     if (actions[platform]) actions[platform]();
@@ -123,15 +125,28 @@ window.addEventListener('click', (e) => {
 });
 
 if (bookingForm) {
-    bookingForm.addEventListener('submit', (e) => {
+    bookingForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        bookingForm.style.display = 'none';
-        successMsg.style.display = 'block';
+        const data = new FormData(bookingForm);
         
-        // Timer para fechar modal
-        setTimeout(() => {
-            modal.classList.remove('active');
-        }, 3500);
+        try {
+            const response = await fetch(bookingForm.action, {
+                method: 'POST',
+                body: data,
+                headers: { 'Accept': 'application/json' }
+            });
+
+            if (response.ok) {
+                bookingForm.style.display = 'none';
+                successMsg.style.display = 'block';
+                setTimeout(() => modal.classList.remove('active'), 3500);
+                bookingForm.reset();
+            } else {
+                alert('Ocorreu um erro. Por favor, tente novamente.');
+            }
+        } catch (error) {
+            alert('Erro de conexão. Verifique sua internet.');
+        }
     });
 }
 
@@ -162,6 +177,98 @@ function initScrollAnimations() {
 
     document.querySelectorAll('.fade-up').forEach(el => {
         observer.observe(el);
+    });
+}
+
+// 9. Lógica do Formulário de Contato
+const contactForm = document.getElementById('contact-form');
+const contactSuccess = document.getElementById('contact-success');
+
+if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const data = new FormData(contactForm);
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Enviando...';
+
+        try {
+            const response = await fetch(contactForm.action, {
+                method: 'POST',
+                body: data,
+                headers: { 'Accept': 'application/json' }
+            });
+
+            if (response.ok) {
+                contactSuccess.style.display = 'block';
+                contactForm.reset();
+                setTimeout(() => contactSuccess.style.display = 'none', 5000);
+            } else {
+                alert('Ocorreu um erro ao enviar. Tente novamente mais tarde.');
+            }
+        } catch (error) {
+            alert('Erro de conexão ao enviar a mensagem.');
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Enviar Mensagem';
+        }
+    });
+}
+
+// 10. Lógica de "Deixe sua Avaliação"
+const btnOpenReview = document.getElementById('btn-open-review');
+const btnCloseReview = document.getElementById('btn-close-review');
+const reviewFormContainer = document.getElementById('review-form-container');
+const reviewSubmissionForm = document.getElementById('review-submission-form');
+const reviewSuccess = document.getElementById('review-success');
+
+if (btnOpenReview) {
+    btnOpenReview.addEventListener('click', () => {
+        reviewFormContainer.style.display = 'block';
+        btnOpenReview.style.display = 'none';
+        reviewFormContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+}
+
+if (btnCloseReview) {
+    btnCloseReview.addEventListener('click', () => {
+        reviewFormContainer.style.display = 'none';
+        btnOpenReview.style.display = 'inline-block';
+    });
+}
+
+if (reviewSubmissionForm) {
+    reviewSubmissionForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const data = new FormData(reviewSubmissionForm);
+        const submitBtn = reviewSubmissionForm.querySelector('button[type="submit"]');
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Enviando...';
+
+        try {
+            const response = await fetch(reviewSubmissionForm.action, {
+                method: 'POST',
+                body: data,
+                headers: { 'Accept': 'application/json' }
+            });
+
+            if (response.ok) {
+                reviewSuccess.style.display = 'block';
+                reviewSubmissionForm.reset();
+                setTimeout(() => {
+                    reviewSuccess.style.display = 'none';
+                    reviewFormContainer.style.display = 'none';
+                    btnOpenReview.style.display = 'inline-block';
+                }, 4000);
+            } else {
+                alert('Erro ao enviar avaliação. Tente novamente.');
+            }
+        } catch (error) {
+            alert('Erro de conexão ao enviar avaliação.');
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Publicar Avaliação';
+        }
     });
 }
 

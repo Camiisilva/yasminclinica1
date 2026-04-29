@@ -51,9 +51,15 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a href="#avaliacoes">
+                            <i class="fa-solid fa-star"></i>
+                            <span>Avaliações</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a href="#contato">
                             <i class="fa-solid fa-envelope"></i>
-                            <span>Contato</span>
+                            <span>Fale Conosco</span>
                         </a>
                     </li>
                 </ul>
@@ -64,10 +70,6 @@
                     <button class="social-btn" onclick="socialLink('ig')"><i class="fa-brands fa-instagram"></i></button>
                     <button class="social-btn" onclick="socialLink('wa')"><i class="fa-brands fa-whatsapp"></i></button>
                     <button class="social-btn" onclick="socialLink('em')"><i class="fa-solid fa-envelope"></i></button>
-                </div>
-                <div class="theme-switch" id="theme-toggle">
-                    <i class="fa-solid fa-moon"></i>
-                    <span>Modo Escuro</span>
                 </div>
             </div>
         </aside>
@@ -86,10 +88,14 @@
                     <a href="#inicio">Início</a>
                     <a href="#perfil">A Doutora</a>
                     <a href="#servicos">Serviços</a>
-                    <a href="#contato">Contato</a>
+                    <a href="#avaliacoes">Avaliações</a>
+                    <a href="#contato">Fale Conosco</a>
                 </nav>
 
                 <div class="header-right">
+                    <button class="theme-btn" id="theme-toggle">
+                        <i class="fa-solid fa-moon"></i>
+                    </button>
                     <button class="btn-agendar btn-trigger-modal">Agendar Consulta</button>
                 </div>
             </header>
@@ -150,21 +156,128 @@
                         </div>
                     </section>
 
-                    <!-- Contato -->
-                    <section id="contato" class="fade-up" style="margin-bottom: 4rem;">
-                        <h2 class="section-title">Nossa Localização</h2>
-                        <div class="clinical-card" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 4rem;">
-                            <div>
-                                <h3 style="margin-bottom: 2rem;">Unidade São Paulo</h3>
-                                <p><i class="fa-solid fa-location-dot" style="color: var(--primary-color); width: 20px;"></i> Av. Paulista, 1000 — Jardins</p>
-                                <p style="margin-top: 1rem;"><i class="fa-solid fa-phone" style="color: var(--primary-color); width: 20px;"></i> (11) 90000-0000</p>
-                                <p style="margin-top: 1rem;"><i class="fa-solid fa-envelope" style="color: var(--primary-color); width: 20px;"></i> contato@yasminclinica.com.br</p>
+                    <!-- Avaliações -->
+                    <section id="avaliacoes" class="fade-up" style="margin-bottom: 10rem;">
+                        <h2 class="section-title">O Que Dizem Nossos Pacientes</h2>
+                        <div class="reviews-grid">
+                            <div class="review-card">
+                                <div class="review-header">
+                                    <div>
+                                        <h4>Maria Oliveira</h4>
+                                        <div class="stars">
+                                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p>"A Dra. Yasmin é extremamente atenciosa e detalhista. O atendimento tecnológico me passou muita segurança."</p>
                             </div>
-                            <div style="background: rgba(124, 92, 252, 0.05); padding: 2.5rem; border-radius: 20px;">
-                                <h3 style="margin-bottom: 1.5rem;">Atendimento</h3>
-                                <p>Segunda à Sexta — 08h às 19h</p>
-                                <p>Sábados — 08h às 13h</p>
-                                <button class="btn-agendar btn-trigger-modal" style="width: 100%; margin-top: 2rem;">Falar com Equipe</button>
+                            <div class="review-card">
+                                <div class="review-header">
+                                    <div>
+                                        <h4>João Pereira</h4>
+                                        <div class="stars">
+                                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p>"Excelente infraestrutura e pontualidade. Finalmente uma clínica que entende as necessidades modernas de saúde."</p>
+                            </div>
+                            <div class="review-card">
+                                <div class="review-header">
+                                    <div>
+                                        <h4>Ricardo Santos</h4>
+                                        <div class="stars">
+                                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p>"O monitoramento 24h mudou minha vida. Sinto-me muito mais tranquilo com o cuidado preventivo da clínica."</p>
+                            </div>
+                        </div>
+
+                        <div class="review-action" style="margin-top: 4rem; text-align: center;">
+                            <button id="btn-open-review" class="btn-agendar" style="background: transparent; border: 2px solid var(--primary-color); color: var(--primary-color); animation: none;">Deixe sua Avaliação</button>
+                        </div>
+
+                        <div id="review-form-container" class="review-form-hidden" style="display: none; margin-top: 3rem; max-width: 700px; margin-left: auto; margin-right: auto;">
+                            <div class="clinical-card">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                                    <h3 style="margin-bottom: 0;">Sua Avaliação</h3>
+                                    <button id="btn-close-review" style="background: none; border: none; font-size: 1.1rem; cursor: pointer; color: var(--text-muted); display: flex; align-items: center; gap: 5px;">
+                                        <i class="fa-solid fa-xmark"></i> Fechar
+                                    </button>
+                                </div>
+                                <form id="review-submission-form" action="https://formspree.io/f/mnjwajbw" method="POST">
+                                    <div class="form-grid">
+                                        <div class="form-group">
+                                            <input type="text" name="name" placeholder="Seu Nome" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <select name="rating" required style="width: 100%; padding: 16px; border-radius: 12px; border: 1px solid rgba(0,0,0,0.1); background: var(--bg-light); color: var(--text-main);">
+                                                <option value="">Nota (1 a 5)</option>
+                                                <option value="5">⭐⭐⭐⭐⭐ (Excelente)</option>
+                                                <option value="4">⭐⭐⭐⭐ (Muito Bom)</option>
+                                                <option value="3">⭐⭐⭐ (Bom)</option>
+                                                <option value="2">⭐⭐ (Regular)</option>
+                                                <option value="1">⭐ (Poderia Melhorar)</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <textarea name="review-text" rows="4" placeholder="Conte-nos como foi sua experiência na Yasmin Clínica..." required></textarea>
+                                    </div>
+                                    <button type="submit" class="btn-agendar" style="width: 100%; animation: none;">Publicar Avaliação</button>
+                                    <div id="review-success" style="display: none; margin-top: 1.5rem; color: #27ae60; text-align: center; font-weight: 600;">
+                                        <i class="fa-solid fa-check-circle"></i> Obrigado! Sua avaliação foi enviada com sucesso.
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Fale Conosco -->
+                    <section id="contato" class="fade-up" style="margin-bottom: 4rem;">
+                        <h2 class="section-title">Fale Conosco</h2>
+                        <div class="contact-container">
+                            <div class="contact-info">
+                                <div class="clinical-card" style="height: 100%;">
+                                    <h3 style="margin-bottom: 2rem;">Unidade São Paulo</h3>
+                                    <p><i class="fa-solid fa-location-dot" style="color: var(--primary-color); width: 20px;"></i> Av. Paulista, 1000 — Jardins</p>
+                                    <p style="margin-top: 1rem;"><i class="fa-solid fa-phone" style="color: var(--primary-color); width: 20px;"></i> (11) 90000-0000</p>
+                                    <p style="margin-top: 1rem;"><i class="fa-solid fa-envelope" style="color: var(--primary-color); width: 20px;"></i> silvadeoliveirayasmin87@gmail.com</p>
+                                    
+                                    <div style="margin-top: 3rem; background: rgba(124, 92, 252, 0.05); padding: 2rem; border-radius: 15px;">
+                                        <h4 style="margin-bottom: 1rem;">Horário de Atendimento</h4>
+                                        <p>Segunda à Sexta — 08h às 19h</p>
+                                        <p>Sábados — 08h às 13h</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-form-wrapper">
+                                <div class="clinical-card">
+                                    <h3 style="margin-bottom: 1.5rem;">Envie uma Mensagem</h3>
+                                    <form id="contact-form" action="https://formspree.io/f/mnjwajbw" method="POST">
+                                        <div class="form-grid">
+                                            <div class="form-group">
+                                                <input type="text" name="name" placeholder="Seu Nome" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="email" name="email" placeholder="Seu E-mail" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" name="subject" placeholder="Assunto" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <textarea name="message" rows="5" placeholder="Sua Mensagem ou Dúvida sobre Consulta" required></textarea>
+                                        </div>
+                                        <button type="submit" class="btn-agendar" style="width: 100%; animation: none;">Enviar Mensagem</button>
+                                        <div id="contact-success" style="display: none; margin-top: 1.5rem; color: #27ae60; text-align: center; font-weight: 600;">
+                                            <i class="fa-solid fa-check-circle"></i> Mensagem enviada com sucesso!
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </section>
@@ -179,11 +292,11 @@
             <button id="close-modal" style="position: absolute; top: 30px; right: 30px; border: none; background: none; font-size: 1.8rem; cursor: pointer; color: var(--text-muted);">&times;</button>
             <h2 style="color: var(--primary-color); margin-bottom: 1.5rem;">Solicitar Atendimento</h2>
             <p style="margin-bottom: 2.5rem;">Escolha o melhor horário para cuidarmos do seu coração.</p>
-            <form id="booking-form">
-                <input type="text" placeholder="Nome completo" required style="width: 100%; padding: 16px; border-radius: 12px; border: 1px solid rgba(0,0,0,0.1); margin-bottom: 1.5rem; background: var(--bg-light); color: var(--text-main);">
+            <form id="booking-form" action="https://formspree.io/f/mnjwajbw" method="POST">
+                <input type="text" name="name" placeholder="Nome completo" required style="width: 100%; padding: 16px; border-radius: 12px; border: 1px solid rgba(0,0,0,0.1); margin-bottom: 1.5rem; background: var(--bg-light); color: var(--text-main);">
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 2rem;">
-                    <input type="date" required style="width: 100%; padding: 16px; border-radius: 12px; border: 1px solid rgba(0,0,0,0.1); background: var(--bg-light); color: var(--text-main);">
-                    <select required style="width: 100%; padding: 16px; border-radius: 12px; border: 1px solid rgba(0,0,0,0.1); background: var(--bg-light); color: var(--text-main);">
+                    <input type="date" name="date" required style="width: 100%; padding: 16px; border-radius: 12px; border: 1px solid rgba(0,0,0,0.1); background: var(--bg-light); color: var(--text-main);">
+                    <select name="period" required style="width: 100%; padding: 16px; border-radius: 12px; border: 1px solid rgba(0,0,0,0.1); background: var(--bg-light); color: var(--text-main);">
                         <option value="">Selecione o Turno</option>
                         <option>Manhã</option>
                         <option>Tarde</option>
